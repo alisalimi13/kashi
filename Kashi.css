@@ -1,0 +1,30 @@
+* {
+    direction: rtl;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+body {
+    height: 99.5vh;
+}
+
+header {
+    height: 5%;
+}
+
+section {
+    height: 90%;
+}
+
+footer {
+    height: 5%;
+}
+
+#tiles {
+    border:  1px solid black;
+    border-collapse: collapse;
+}
+
+#tiles td {
+    border:  1px solid black;
+}

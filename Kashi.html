@@ -1,0 +1,109 @@
+<!--In The Name Of Allah-->
+
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>کاشی</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="WebHandcrafts.css">
+    <link rel="stylesheet" href="Kashi.css">
+</head>
+
+<body id="root" class="container-fluid ag-bg-img1-s">
+    <header id="header" class="row ag-c5">
+        <nav class="col-sm-12 navbar navbar-expand">
+            <span class="navbar-brand">کارگاه کاشی</span>
+            <ul id="mainbar" class="navbar-nav">
+                <li v-for="(op, i) in operations" :key="i" class="nav-item btn-group">
+                    <button type="button" class="btn btn-sm rounded-0 btn-dark" v-on:click="op.onClick()">{{op.name}}</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="row">
+        <div id="desk" class="col-10 card p-0 rounded-0 ag-c1 ag-bg-opacity-h">
+            <div class="card-header p-1">میز</div>
+            <div class="card-body ag-oa ag-card-column">
+                <table id="tiles" class="ag-ltr">
+                    <tr v-for="tr in tiles">
+                        <td v-for="t in tr" v-bind:style="t" v-on:click="RootV.hand.do(t)"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="toolbox" class="col-2 card p-0 rounded-0 ag-c1 ag-bg-opacity-h">
+            <div class="card-header p-1">جعبه‌ابزار</div>
+            <div class="card-body ag-oa ag-card-column">
+                <span v-for="tool in tools">
+                    <span v-on:click="RootV.hand = tool">{{tool.name}}</span>
+                    <input type="color" v-model="tool.color">
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="row ag-c5">
+        <nav class="col-sm-12 navbar navbar-expand">
+            <span class="navbar-brand">web handcrafts</span>
+        </nav>
+    </footer>
+
+    <div class="modal" id="new-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>کاشی‌های جدید</h4></div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small">تعداد ستون‌ها</label>
+                        <input type="number" step="1" min="1" class="form-control form-control-sm ag-c4" v-model.number="c"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small">تعداد سطرها</label>
+                        <input type="number" step="1" min="1" class="form-control form-control-sm ag-c4" v-model.number="r"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small">عرض هر کاشی</label>
+                        <input type="number" step="1" min="1" class="form-control form-control-sm ag-c4" v-model.number="x"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small">طول هر کاشی</label>
+                        <input type="number" step="1" min="1" class="form-control form-control-sm ag-c4" v-model.number="y"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small">رنگ پیش‌فرض</label>
+                        <input type="color" step="1" min="1" class="form-control form-control-sm ag-c4" v-model="dc"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey" @click="create">ایجاد</button>
+                    <button type="button" class="btn btn-grey" @click="cancel">لغو</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="export-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header"><h4>خروجی گرفتن</h4></div>
+                <div class="modal-body h-75 ag-oa">
+                    <canvas id="export-canvas"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey" v-on:click="download">بارگیری</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="vue.min.js"></script>
+    <script src="Kashi.js"></script>
+</body>
+
+</html>
